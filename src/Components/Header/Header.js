@@ -1,7 +1,7 @@
 import React from "react";
 import "./Header.css";
 import MenuIcon from "@material-ui/icons/Menu";
-import IconButton from "@material-ui/core/IconButton";
+import { IconButton, Avatar } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import AppsIcon from "@material-ui/icons/Apps";
@@ -27,6 +27,7 @@ const Header = () => {
         <IconButton>
           <NotificationsIcon />
         </IconButton>
+        <Avatar />
       </div>
     </div>
   );
