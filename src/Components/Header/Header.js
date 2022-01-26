@@ -13,7 +13,10 @@ const Header = () => {
         <IconButton>
           <MenuIcon />
         </IconButton>
-        <img src="https://cdn.vox-cdn.com/thumbor/Tbqi3ZF9Qz0fTJIUvkgQe3FdN0k=/1400x788/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/21939811/newgmaillogo.jpg" />
+        <img
+          src="https://cdn.vox-cdn.com/thumbor/Tbqi3ZF9Qz0fTJIUvkgQe3FdN0k=/1400x788/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/21939811/newgmaillogo.jpg"
+          alt="Gmail"
+        />
       </div>
       <div className="header__middle">
         <SearchIcon />
