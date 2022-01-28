@@ -56,6 +56,20 @@ const EmailList = () => {
             <Settings />
           </IconButton>
         </div>
+        <div className="emailList__settingsRight">
+          <IconButton>
+            <ChevronLeft />
+          </IconButton>
+          <IconButton>
+            <ChevronRight />
+          </IconButton>
+          <IconButton>
+            <KeyboardHide />
+          </IconButton>
+          <IconButton>
+            <Settings />
+          </IconButton>
+        </div>
       </div>
       <div className="emailList__sections"></div>
     </div>
