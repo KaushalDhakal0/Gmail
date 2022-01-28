@@ -7,6 +7,9 @@ import {
   ChevronRight,
   KeyboardHide,
   Settings,
+  Inbox,
+  People,
+  LocalOffer,
 } from "@material-ui/icons";
 
 import React from "react";
@@ -43,7 +46,26 @@ const EmailList = () => {
           </IconButton>
         </div>
       </div>
-      <div className="emailList__sections"></div>
+      <div className="emailList__sections">
+        <Section Icon={Inbox} title="Primary" color="red" selected />
+        <Section Icon={People} title="Social" color="#1A73E8" />
+        <Section Icon={LocalOffer} title="Promotions" color="green" />
+      </div>
+    </div>
+  );
+};
+
+const Section = ({ Icon, title, color, selected }) => {
+  return (
+    <div
+      className={`section ${selected && "section-selected"}`}
+      style={{
+        borderbottom: `3px solid ${color}`,
+        color: `${selected && color}`,
+      }}
+    >
+      <Icon />
+      <h4>{title}</h4>
     </div>
   );
 };

@@ -4,6 +4,33 @@
 }
 
 .emailList__settings{
+    position: sticky;
+    top: 0s;
     display: flex;
     justify-content:space-between;
+    border-bottom: 1px solid whitesmoke;
+    background-color: white;
+    z-index: 999;
+    padding: 10px;
+}
+.emailList__sections{
+    display: flex;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    border-bottom: 1px solid whitesmoke;
+    z-index: 999;
+
+}
+.section {
+    display: flex;
+    align-items: center;
+    border-bottom-width:2px;
+    padding: 15px;
+    min-width: 200px;
+    cursor: pointer;
+}
+.section-selected{
+    background-color: whitesmoke;
+    border-width: 3px !important;
 }
