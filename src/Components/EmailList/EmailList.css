@@ -1,3 +1,9 @@
 .email__list{
-    
+    flex: 0.7;
+    overflow: scroll;
+}
+
+.emailList__settings{
+    display: flex;
+    justify-content:space-between;
 }
