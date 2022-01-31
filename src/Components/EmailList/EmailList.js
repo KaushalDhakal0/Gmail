@@ -10,6 +10,8 @@ import {
   Inbox,
   People,
   LocalOffer,
+  StarBorderOutlined,
+  LabelImportantOutlined,
 } from "@material-ui/icons";
 
 import React from "react";
@@ -52,7 +54,12 @@ const EmailList = () => {
         <Section Icon={LocalOffer} title="Promotions" color="green" />
       </div>
       <div className="emailList__list">
-        <EmailRow />
+        <EmailRow
+          title="Twitch"
+          subject="Hey Streamers!!"
+          description="This is a test"
+          time="1pm"
+        />
       </div>
     </div>
   );
@@ -73,10 +80,21 @@ const Section = ({ Icon, title, color, selected }) => {
   );
 };
 
-const EmailRow = () => {
+const EmailRow = ({ id, title, subject, description, time }) => {
   return (
     <div className="emailRow">
-      <p>hello</p>
+      <div className="emailRow__options">
+        <Checkbox />
+        <IconButton>
+          <StarBorderOutlined />
+        </IconButton>
+        <IconButton>
+          <LabelImportantOutlined />
+        </IconButton>
+      </div>
+      <div className="emailRow__title"></div>
+      <div className="emailRow__message"></div>
+      <div className="emailRow__description"></div>
     </div>
   );
 };
