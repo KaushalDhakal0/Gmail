@@ -51,6 +51,9 @@ const EmailList = () => {
         <Section Icon={People} title="Social" color="#1A73E8" />
         <Section Icon={LocalOffer} title="Promotions" color="green" />
       </div>
+      <div className="emailList__list">
+        <EmailRow />
+      </div>
     </div>
   );
 };
@@ -66,6 +69,14 @@ const Section = ({ Icon, title, color, selected }) => {
     >
       <Icon />
       <h4>{title}</h4>
+    </div>
+  );
+};
+
+const EmailRow = () => {
+  return (
+    <div className="emailRow">
+      <p>hello</p>
     </div>
   );
 };
