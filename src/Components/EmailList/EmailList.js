@@ -60,6 +60,18 @@ const EmailList = () => {
           description="This is a test"
           time="1pm"
         />
+        <EmailRow
+          title="Twitch"
+          subject="Hey Streamers!!"
+          description="This is a test"
+          time="1pm"
+        />
+        <EmailRow
+          title="Twitch"
+          subject="Hey Streamers!!"
+          description="This is a test. This is a test. This is a test. this is a test."
+          time="1pm"
+        />
       </div>
     </div>
   );
