@@ -15,6 +15,7 @@ import {
 } from "@material-ui/icons";
 
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./EmailList.css";
 
 const EmailList = () => {
@@ -93,8 +94,14 @@ const Section = ({ Icon, title, color, selected }) => {
 };
 
 const EmailRow = ({ id, title, subject, description, time }) => {
+  const navigate = useNavigate();
   return (
-    <div className="emailRow">
+    <div
+      className="emailRow"
+      onClick={() => {
+        navigate("/mail");
+      }}
+    >
       <div className="emailRow__options">
         <Checkbox />
         <IconButton>
@@ -108,7 +115,7 @@ const EmailRow = ({ id, title, subject, description, time }) => {
       <div className="emailRow__message">
         <h4>
           {subject}
-          <span className="emailRow__description">{description}</span>
+          <span className="emailRow__description">- {description}</span>
         </h4>
       </div>
       <p className="emailRow__time">{time}</p>
