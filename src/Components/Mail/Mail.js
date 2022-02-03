@@ -5,9 +5,12 @@ import {
   DeleteOutlined,
   EmailOutlined,
   ErrorOutlineOutlined,
+  ExitToApp,
   LabelImportant,
   MoreVert,
   MoveToInbox,
+  Print,
+  UnfoldMore,
   WatchLaterSharp,
 } from "@material-ui/icons";
 import React from "react";
@@ -48,7 +51,22 @@ const Mail = () => {
             <MoreVert />
           </IconButton>
         </div>
-        <div className="mail_toolsRight"></div>
+        <div className="mail_toolsRight">
+          <IconButton>
+            <UnfoldMore />
+          </IconButton>
+          <IconButton>
+            <Print />
+          </IconButton>
+          <IconButton>
+            <ExitToApp />
+          </IconButton>
+        </div>
+      </div>
+      <div className="mail__body">
+        <div className="mail__bodyHeader">
+          <h2>Subject</h2>
+        </div>
       </div>
     </div>
   );
