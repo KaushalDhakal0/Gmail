@@ -5,6 +5,7 @@ import Mail from "./Components/Mail/Mail";
 import EmailList from "./Components/EmailList/EmailList";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SendMail from "./Components/Mail/SendMail";
 
 // import { useDispatch, useSelector } from "react-redux";
 // import { selectUser, login, logout } from "./features/userSlice";
@@ -22,6 +23,7 @@ function App() {
             <Route exact path="/" element={<EmailList />} />
           </Routes>
         </div>
+        <SendMail />
       </div>
     </BrowserRouter>
   );
