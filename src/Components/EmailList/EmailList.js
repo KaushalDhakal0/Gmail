@@ -76,13 +76,14 @@ const EmailList = () => {
       <div className="emailList__list">
         {emails.length > 0 ? (
           emails.map((email) => {
+            // console.log(email.timeStamp);
             return (
               <EmailRow
                 key={email.id}
                 title={email.to}
                 subject={email.subject}
                 description={email.message}
-                time={email.timestamp}
+                time={email.timeStamp}
               />
             );
           })

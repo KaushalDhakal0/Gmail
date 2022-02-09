@@ -7,16 +7,16 @@ import { closeSendMessage } from "../../features/mailSlice";
 import { useDispatch } from "react-redux";
 import { db } from "../../firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-
 const SendMail = () => {
   const dispatch = useDispatch();
 
   const onSubmit = async (data) => {
+    // console.log(serverTimestamp());
     const newData = {
       to: data.To,
       subject: data.subject,
       message: data.message,
-      timeStamp: serverTimestamp(),
+      timeStamp: "10/12/2022",
     };
     const colRef = collection(db, "emails");
     await addDoc(colRef, newData);
