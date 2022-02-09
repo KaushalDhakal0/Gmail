@@ -13,12 +13,27 @@ import {
   StarBorderOutlined,
   LabelImportantOutlined,
 } from "@material-ui/icons";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./EmailList.css";
 
 const EmailList = () => {
+  const [emails, setEmails] = useState([]);
+  useEffect(() => {
+    const colRef = collection(db, "emails");
+    getDocs(colRef).then((snap) => {
+      setEmails(
+        snap.docs.map((doc) => {
+          // console.log(doc.data());
+          return { id: doc.id, ...doc.data() };
+        })
+      );
+    });
+    // console.log(user);
+  }, []);
   return (
     <div className="email__list">
       <div className="emailList__settings">
@@ -55,24 +70,22 @@ const EmailList = () => {
         <Section Icon={LocalOffer} title="Promotions" color="green" />
       </div>
       <div className="emailList__list">
-        <EmailRow
-          title="Twitch"
-          subject="Hey Streamers!!"
-          description="This is a test"
-          time="1pm"
-        />
-        <EmailRow
-          title="Twitch"
-          subject="Hey Streamers!!"
-          description="This is a test"
-          time="1pm"
-        />
-        <EmailRow
-          title="Twitch"
-          subject="Hey Streamers!!"
-          description="This is a test. This is a test. This is a test. this is a test."
-          time="1pm"
-        />
+        {emails.length > 0 ? (
+          emails.map((email) => {
+            console.log(email);
+            return (
+              <EmailRow
+                key={email.id}
+                title={email.to}
+                subject={email.subject}
+                description={email.message}
+                time={email.timestamp}
+              />
+            );
+          })
+        ) : (
+          <h1>No emails</h1>
+        )}
       </div>
     </div>
   );

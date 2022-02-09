@@ -20,6 +20,7 @@ const SendMail = () => {
     };
     const colRef = collection(db, "emails");
     await addDoc(colRef, newData);
+    dispatch(closeSendMessage());
   };
 
   const {
