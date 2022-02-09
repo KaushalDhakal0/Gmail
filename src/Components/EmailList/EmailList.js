@@ -13,7 +13,7 @@ import {
   StarBorderOutlined,
   LabelImportantOutlined,
 } from "@material-ui/icons";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase";
 
 import React, { useEffect, useState } from "react";
@@ -24,14 +24,18 @@ const EmailList = () => {
   const [emails, setEmails] = useState([]);
   useEffect(() => {
     const colRef = collection(db, "emails");
-    getDocs(colRef).then((snap) => {
-      setEmails(
-        snap.docs.map((doc) => {
-          // console.log(doc.data());
-          return { id: doc.id, ...doc.data() };
-        })
-      );
+    onSnapshot(colRef, () => {
+      getDocs(colRef).then((snap) => {
+        setEmails(
+          snap.docs.map((doc) => {
+            // console.log(doc.data());
+            return { id: doc.id, ...doc.data() };
+          })
+        );
+      });
     });
+    // unsubscribe();
+
     // console.log(user);
   }, []);
   return (
@@ -72,7 +76,6 @@ const EmailList = () => {
       <div className="emailList__list">
         {emails.length > 0 ? (
           emails.map((email) => {
-            console.log(email);
             return (
               <EmailRow
                 key={email.id}
