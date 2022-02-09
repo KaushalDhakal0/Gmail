@@ -5,18 +5,29 @@ import "./sendMail.css";
 import { useForm } from "react-hook-form";
 import { closeSendMessage } from "../../features/mailSlice";
 import { useDispatch } from "react-redux";
+import { db } from "../../firebase";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+
 const SendMail = () => {
   const dispatch = useDispatch();
-  const onSubmit = (data) => {
-    console.log(data);
+
+  const onSubmit = async (data) => {
+    const newData = {
+      to: data.To,
+      subject: data.subject,
+      message: data.message,
+      timeStamp: serverTimestamp(),
+    };
+    const colRef = collection(db, "emails");
+    await addDoc(colRef, newData);
   };
 
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
+
   return (
     <div className="sendMail">
       <div className="sendMail__header">
@@ -29,9 +40,9 @@ const SendMail = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           name="To"
-          type="text"
-          placeholder="to"
-          {...register("to", { required: true, pattern: /^\S+@\S+$/i })}
+          type="email"
+          placeholder="To"
+          {...register("To", { required: true, pattern: /^\S+@\S+$/i })}
         />
         {errors.to && <p className="error__message">{"Enter valid email"}</p>}
         <input
