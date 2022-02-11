@@ -7,8 +7,12 @@ import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import AppsIcon from "@material-ui/icons/Apps";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import { useDispatch } from "react-redux";
-import { logout } from "../../features/userSlice";
+import { logout, selectUser } from "../../features/userSlice";
+import { useSelector } from "react-redux";
+
 const Header = () => {
+  const user = useSelector(selectUser);
+  console.log(user);
   const dispatch = useDispatch();
   return (
     <div className="header">
@@ -34,6 +38,7 @@ const Header = () => {
           <NotificationsIcon />
         </IconButton>
         <Avatar
+          src={user.photoUrl}
           onClick={() => {
             dispatch(logout());
           }}

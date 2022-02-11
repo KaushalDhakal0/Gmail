@@ -1,18 +1,27 @@
 import { Button } from "@material-ui/core";
-import { auth } from "../../firebase";
+import { auth, provider } from "../../firebase";
 import { login } from "../../features/userSlice";
+import { signInWithPopup } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import "./login.css";
+
 const Login = () => {
   const dispatch = useDispatch();
   const signIn = () => {
-    dispatch(
-      login({
-        email: "dummy@gmail.com",
-        name: "DUMMY123",
+    signInWithPopup(auth, provider)
+      .then(({ user }) => {
+        console.log("hello");
+        dispatch(
+          login({
+            displayName: user.displayName,
+            email: user.email,
+            photoUrl: user.photoURL,
+          })
+        );
       })
-    );
+      .catch((err) => alert(err.meessage));
   };
+
   return (
     <div className="login">
       <div className="login__container">

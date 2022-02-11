@@ -17,7 +17,7 @@ import { selectUser } from "./features/userSlice";
 // import { auth } from "./firebase";
 function App() {
   const user = useSelector(selectUser);
-  console.log(user);
+  // console.log(user);
   const sendMessageisOpen = useSelector(selectSendMessageIsOpen);
   return (
     <BrowserRouter>
