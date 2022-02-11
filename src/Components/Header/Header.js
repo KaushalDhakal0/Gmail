@@ -6,7 +6,10 @@ import SearchIcon from "@material-ui/icons/Search";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import AppsIcon from "@material-ui/icons/Apps";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import { useDispatch } from "react-redux";
+import { logout } from "../../features/userSlice";
 const Header = () => {
+  const dispatch = useDispatch();
   return (
     <div className="header">
       <div className="header__left">
@@ -30,7 +33,11 @@ const Header = () => {
         <IconButton>
           <NotificationsIcon />
         </IconButton>
-        <Avatar />
+        <Avatar
+          onClick={() => {
+            dispatch(logout());
+          }}
+        />
       </div>
     </div>
   );
