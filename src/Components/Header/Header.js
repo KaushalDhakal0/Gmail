@@ -9,11 +9,17 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import { useDispatch } from "react-redux";
 import { logout, selectUser } from "../../features/userSlice";
 import { useSelector } from "react-redux";
+import { auth } from "../../firebase";
 
 const Header = () => {
   const user = useSelector(selectUser);
   console.log(user);
   const dispatch = useDispatch();
+  const signOut = () => {
+    dispatch(logout());
+    auth.signOut();
+  };
+
   return (
     <div className="header">
       <div className="header__left">
@@ -37,12 +43,7 @@ const Header = () => {
         <IconButton>
           <NotificationsIcon />
         </IconButton>
-        <Avatar
-          src={user.photoUrl}
-          onClick={() => {
-            dispatch(logout());
-          }}
-        />
+        <Avatar src={user?.photoUrl} onClick={signOut} />
       </div>
     </div>
   );
