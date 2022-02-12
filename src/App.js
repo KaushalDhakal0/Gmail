@@ -9,7 +9,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SendMail from "./Components/Mail/SendMail";
 import { useSelector } from "react-redux";
 import { selectSendMessageIsOpen } from "./features/mailSlice";
-import { selectUser } from "./features/userSlice";
+import { login, logout, selectUser } from "./features/userSlice";
+import { useDispatch } from "react-redux";
+import { onAuthStateChanged } from "firebase/auth";
+import { useEffect } from "react";
+import { auth } from "./firebase";
 
 // import { useDispatch, useSelector } from "react-redux";
 // import { selectUser, login, logout } from "./features/userSlice";
@@ -17,8 +21,26 @@ import { selectUser } from "./features/userSlice";
 // import { auth } from "./firebase";
 function App() {
   const user = useSelector(selectUser);
-  // console.log(user);
   const sendMessageisOpen = useSelector(selectSendMessageIsOpen);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    onAuthStateChanged(auth, (userAuth) => {
+      if (userAuth) {
+        // User is LoggedIn
+        console.log(userAuth);
+        dispatch(
+          login({
+            displayName: userAuth.displayName,
+            email: userAuth.email,
+            photoUrl: userAuth.photoURL,
+          })
+        );
+      } else {
+        dispatch(logout());
+        auth.signOut();
+      }
+    });
+  }, []);
   return (
     <BrowserRouter>
       {!user ? (
